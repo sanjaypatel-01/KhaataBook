@@ -10,7 +10,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get("/", (req, res) =>  {
-    res.send("hey")
+    fs.readdir(`./files`, function(err, files){
+        // console.log(files);
+        res.render("index", {files});
+    })
 });
 
 app.get("/create", (req, res) => {
