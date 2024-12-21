@@ -30,6 +30,13 @@ app.post("/update/:filename", (req, res) =>  {
 });
 });
 
+app.get("/delete/:filename", (req, res) =>  {
+    fs.unlink(`./files/${req.params.filename}`, function(err, data){
+    if(err) return res.send(err);
+    res.redirect("/"); 
+});
+});
+
 app.get("/create", (req, res) => {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0'); // Ensures 2 digits for the day
